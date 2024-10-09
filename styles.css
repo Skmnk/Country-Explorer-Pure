@@ -1,0 +1,130 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    --color: #E1E1E1;
+    background-color: #F3F3F3;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
+      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+  background-size: 55px 55px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+#search-bar {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    border-radius: 25px;
+}
+
+#results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.card img {
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.card h3 {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 25px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+#country-details {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#country-details h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#country-details img {
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+#country-details p {
+    font-size: 1.1rem;
+    color: #555;
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+#country-details p strong {
+    color: #333;
+}
+
+#country-details:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#country-details img:hover {
+    transform: scale(1.1);
+}
+
+#country-details h2:hover {
+    color: #007BFF;
+}
+
+#country-details p:hover {
+    color: #007BFF;
+    transition: color 0.3s ease;
+}
+
+
+h1{
+    margin-bottom: 25px;
+    font-size: 3rem;
+}

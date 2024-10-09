@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country Explorer</title>
+    <link rel="icon" href="./favicon.png" type="image/x-icon">
+  </head>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="search-section">
+        <h1 class="heading">Country Explorer</h1>
+        <input
+          type="text"
+          id="search-bar"
+          placeholder="Search for a country..."
+          oninput="searchCountries()"
+        />
+        <button onclick="searchCountries()">Search</button>
+        <div id="results"></div>
+      </div>
+
+      <div id="details-section" style="display: none">
+        <button onclick="goBack()">Back</button>
+        <div id="country-details"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
