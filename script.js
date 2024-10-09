@@ -11,6 +11,7 @@ async function searchCountries() {
         const response = await fetch(`https://restcountries.com/v3.1/name/${query}`);
         const countries = await response.json();
 
+        // code that creats card by fetching values from the api using given query
         countries.forEach(country => {
             const card = document.createElement('div');
             card.classList.add('card');
@@ -20,6 +21,7 @@ async function searchCountries() {
                 <h3>${country.name.common}</h3>
             `;
 
+            // adding event listener to go to result page 
             card.addEventListener('click', () => showDetails(country));
 
             resultsDiv.appendChild(card);
@@ -30,6 +32,7 @@ async function searchCountries() {
 }
 
 function showDetails(country) {
+    // creats a detail card about the selected country using the api data.
     document.getElementById('search-section').style.display = 'none';
     document.getElementById('details-section').style.display = 'block';
 
