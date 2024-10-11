@@ -33,7 +33,7 @@ async function searchCountries() {
             countries = await response.json();
         }
 
-        if (countries.message === "Not Found") {
+        if (countries.message === "Not Found" || countries.length === 0) {
             resultsDiv.innerHTML = '<h5>No country found</h5>';
             return;
         }
