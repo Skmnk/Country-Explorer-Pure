@@ -25,6 +25,7 @@ body {
     font-size: 18px;
     margin-bottom: 20px;
     border-radius: 25px;
+    margin-left: 10px;
 }
 
 #results {
@@ -55,6 +56,9 @@ body {
     font-size: 16px;
     margin-top: 10px;
 }
+.search-button{
+    margin-right: 10px;
+}
 
 button {
     padding: 10px 20px;
@@ -70,6 +74,7 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
 #country-details {
     background-color: #f9f9f9;
     padding: 20px;
@@ -105,11 +110,6 @@ button:hover {
     color: #333;
 }
 
-#country-details:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
 #country-details img:hover {
     transform: scale(1.1);
 }
@@ -122,9 +122,88 @@ button:hover {
     color: #007BFF;
     transition: color 0.3s ease;
 }
+@media (max-width: 768px) {
+    #country-details {
+        padding: 15px;
+        max-width: 90%; 
+        margin: 15px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    #country-details {
+        padding: 10px;
+        max-width: 80%; 
+        margin: 10px auto;
+        border-radius: 10px;
+    }
+}
 
 
 h1{
     margin-bottom: 25px;
     font-size: 3rem;
+}
+
+#filter-icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+  }
+  
+  .modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px; 
+    text-align: center;
+    border-radius: 25px;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    cursor: pointer;
+  }
+  
+  #region-filter {
+    margin-top: 10px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 25px;
+}
+
+#apply-button{
+    margin-top: 15px;
+}
+
+#filter-div{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.hidden{
+    display: none;
 }

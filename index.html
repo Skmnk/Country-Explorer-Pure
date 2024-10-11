@@ -4,27 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Country Explorer</title>
-    <link rel="icon" href="./favicon.png" type="image/x-icon">
-  </head>
+    <link rel="icon" href="./favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
       <div id="search-section">
         <h1 class="heading">Country Explorer</h1>
-        <input
-          type="text"
-          id="search-bar"
-          placeholder="Search for a country..."
-          oninput="searchCountries()"
-        />
-        <button onclick="searchCountries()">Search</button>
-        <!-- this reuslts div will appear once the above searchCountries function runs -->
+        <div id="filter-div">
+          <input
+            type="text"
+            id="search-bar"
+            placeholder="Search for a country..."
+            oninput="searchCountries()"
+          />
+
+          <img
+            src="./filter.png"
+            alt="Filter"
+            id="filter-icon"
+            onclick="openFilterDialog()"
+          />
+
+          <div id="filter-modal" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeFilterDialog()">&times;</span>
+              <label for="region-filter">Filter by Region:</label>
+              <select id="region-filter">
+                <option value="">All Regions</option>
+              </select>
+              <button id="apply-button" onclick="searchCountries()">
+                apply filter
+              </button>
+            </div>
+          </div>
+
+          <button class="search-button" onclick="searchCountries()">
+            Search
+          </button>
+          <!-- this reuslts div will appear once the above searchCountries function runs -->
+        </div>
         <div id="results"></div>
       </div>
 
       <!-- this div details-section will appear on clicking the results cards  -->
-      <div id="details-section" style="display: none">
+      <div id="details-section" class="hidden">
         <button onclick="goBack()">Back</button>
         <div id="country-details"></div>
       </div>

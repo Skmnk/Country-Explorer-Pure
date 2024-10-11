@@ -1,0 +1,26 @@
+{
+  "name": "country-explorer-task",
+  "version": "1.0.0",
+  "description": "[click Me](https://country-explorer-pure.vercel.app/) for live demo. (Deployment Link)",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
+    "jsdom": "^25.0.1",
+    "util": "^0.12.5"
+  },
+  "jest": {
+    "testEnvironment": "jest-environment-jsdom"
+  },
+  "dependencies": {
+    "country-explorer-task": "file:"
+  }
+}
