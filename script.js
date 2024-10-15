@@ -1,9 +1,24 @@
+let timeout;
+    let controller;
+
+    function debounceSearch() {
+        clearTimeout(timeout);
+        timeout = setTimeout(searchCountries, 300); 
+    }
+
 async function searchCountries() {
     closeFilterDialog();
     const query = document.getElementById('search-bar').value;
     const region = document.getElementById('region-filter').value;
     const resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = ''; 
+
+    if (controller) {
+        controller.abort();
+    }
+
+    controller = new AbortController();
+        const signal = controller.signal;
 
     if (query.length === 0 && !region) {
         return; 
@@ -18,31 +33,32 @@ async function searchCountries() {
     try {
         let apiUrl
         let countries = [];
-
-        if(region && query){
-            apiUrl = `https://restcountries.com/v3.1/region/${region}`;
-            const response = await fetch(apiUrl);
-            countries = await response.json();
-
-            countries = countries.filter(country => 
-                country.name.common.toLowerCase().includes(query)
-            );
-        }else{
+        let filteredCountries = [];
+        if(query){
             apiUrl = `https://restcountries.com/v3.1/name/${query}`;
-            const response = await fetch(apiUrl);
+            const response = await fetch(apiUrl, {signal});
+            if(!response.ok){
+                handleHttpError(response.status); 
+                return;
+            }
             countries = await response.json();
+            if(region && response.status === 200){
+                filteredCountries = countries.filter(country => country.region === region)
+                countries =  filteredCountries
+            }
+
+
+        }else if(!query){
+            return
         }
 
-        if (countries.message === "Not Found" || countries.length === 0 ) {
+        if (!countries.length) {
             resultsDiv.innerHTML = '<h5>No country found</h5>';
-            return;
-        }else if(countries.message === "Page Not Found"){
-            resultsDiv.innerHTML='';
             return;
         }
 
         // code that creats card by fetching values from the api using given query
-            countries.forEach(country => {
+        countries.forEach(country => {
                 const card = document.createElement('div');
                 card.classList.add('card');
     
@@ -58,8 +74,26 @@ async function searchCountries() {
             });
         
     } catch (error) {
-        console.error('Error fetching country data:', error);
-        resultsDiv.innerHTML = '<h5>We are facing some issues in fetching data</h5>';
+        if (error.name === 'AbortError') {
+            console.log('Request aborted due to a new request');
+        } else {
+            console.error('Error fetching country data:', error);
+            resultsDiv.innerHTML = '<h5>We are facing some issues in fetching data</h5>';
+        }
+    }
+}
+
+function handleHttpError(status) {
+    const resultsDiv = document.getElementById('results');
+    switch (status) {
+        case 404:
+            resultsDiv.innerHTML = '<h5>No country found. Please try a different search.</h5>';
+            break;
+        case 500:
+            resultsDiv.innerHTML = '<h5>Server error. Please try again later.</h5>';
+            break;
+        default:
+            resultsDiv.innerHTML = `<h5>Error: ${status}. Please try again later.</h5>`;
     }
 }
 
@@ -128,3 +162,42 @@ window.onclick = function(event) {
 
 window.searchCountries = searchCountries;
 window.showDetails = showDetails;
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const searchBar = document.getElementById("search-bar");
+    const clearButton = document.getElementById("clear-button");
+
+    clearButton.disabled = true;
+
+
+    searchBar.addEventListener("input", function() {
+        
+        searchCountries();
+    
+        
+        if (searchBar.value.trim() !== '') {
+          clearButton.disabled = false;
+        } else {
+          clearButton.disabled = true;
+        }
+      });
+
+      clearButton.addEventListener("click", function() {
+        searchBar.value = '';
+        clearButton.disabled = true;
+    
+        searchCountries();
+      });
+
+  
+    
+    document.getElementById("filter-icon").addEventListener("click", openFilterDialog);
+    document.querySelector(".close").addEventListener("click", closeFilterDialog);
+    document.getElementById("apply-button").addEventListener("click", searchCountries);
+  
+    
+    document.getElementById("back-button").addEventListener("click", goBack);
+  });

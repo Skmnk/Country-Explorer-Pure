@@ -16,32 +16,22 @@
             type="text"
             id="search-bar"
             placeholder="Search for a country..."
-            oninput="searchCountries()"
           />
 
-          <img
-            src="./filter.png"
-            alt="Filter"
-            id="filter-icon"
-            onclick="openFilterDialog()"
-          />
+          <img src="./filter.png" alt="Filter" id="filter-icon" />
 
           <div id="filter-modal" class="modal">
             <div class="modal-content">
-              <span class="close" onclick="closeFilterDialog()">&times;</span>
+              <span class="close">&times;</span>
               <label for="region-filter">Filter by Region:</label>
               <select id="region-filter">
                 <option value="">All Regions</option>
               </select>
-              <button id="apply-button" onclick="searchCountries()">
-                apply filter
-              </button>
+              <button id="apply-button">apply filter</button>
             </div>
           </div>
 
-          <button class="search-button" onclick="searchCountries()">
-            Search
-          </button>
+          <button class="clear-button" id="clear-button">Clear</button>
           <!-- this reuslts div will appear once the above searchCountries function runs -->
         </div>
         <div id="results"></div>
@@ -49,7 +39,7 @@
 
       <!-- this div details-section will appear on clicking the results cards  -->
       <div id="details-section" class="hidden">
-        <button onclick="goBack()">Back</button>
+        <button id="back-button">Back</button>
         <div id="country-details"></div>
       </div>
     </div>

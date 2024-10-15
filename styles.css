@@ -56,9 +56,15 @@ body {
     font-size: 16px;
     margin-top: 10px;
 }
-.search-button{
+.clear-button{
     margin-right: 10px;
 }
+
+.clear-button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 
 button {
     padding: 10px 20px;
